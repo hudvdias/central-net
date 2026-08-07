@@ -3,7 +3,7 @@ import { NavLink } from "react-router";
 import { databaseContext } from "../../context/database-context";
 import type { Post } from "../../types/post";
 
-export function AdminPage() {
+export function AdminPostsPage() {
   const useDatabase = useContext(databaseContext);
 
   async function deletePost(post: Post) {

@@ -8,7 +8,7 @@ export function HomePage() {
     <div className="flex flex-col p-4 max-w-7xl overflow-y-auto">
       <p className="text-xl font-semibold mb-4">Informativo</p>
 
-      {useDatabase.posts.length < 1 && <p>Sem informativos.</p>}
+      {useDatabase.posts.length < 1 && <p className="p-4 rounded border">Sem informativos.</p>}
 
       {/* posts container */}
       <div className="flex flex-col gap-4">

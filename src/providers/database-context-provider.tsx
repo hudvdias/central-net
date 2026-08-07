@@ -1,42 +1,105 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { databaseContext } from "../context/database-context";
+import type { Category } from "../types/category";
 import type { Post } from "../types/post";
-import { downloadPostsJson } from "../utils/download-json";
-
+import { getDirectoryHandle, saveDirectoryHandle } from "../utils/file-system-storage";
 type Props = { children: ReactNode };
 
 export function DatabaseContextProvider(props: Props) {
+  const [categories, setCategories] = useState<Category[]>([]);
   const [posts, setPosts] = useState<Post[]>([]);
+  const [directory, setDirectory] = useState<FileSystemDirectoryHandle | null>(null);
+  const [categoriesHandle, setCategoriesHandle] = useState<FileSystemFileHandle | null>(null);
+  const [postsHandle, setPostsHandle] = useState<FileSystemFileHandle | null>(null);
+
+  // Altera o arquivo Json
+  async function writeJsonFile(handle: FileSystemFileHandle, data: unknown) {
+    const writable = await handle.createWritable();
+    await writable.write(JSON.stringify(data, null, 2));
+    await writable.close();
+  }
+
+  // Seleciona o diretório
+  async function selectDirectory() {
+    try {
+      const handle = await (window as any).showDirectoryPicker({ mode: "readwrite" });
+      await loadFileHandles(handle);
+      await saveDirectoryHandle(handle);
+      setDirectory(handle);
+    } catch (error) {
+      console.error("Pasta inválida!", error);
+      alert("Pasta Inválida!");
+    }
+  }
+
+  // carrega os arquivos a partir da pasta selecionada
+  async function loadFileHandles(handle: FileSystemDirectoryHandle) {
+    const categoriesFile = await handle.getFileHandle("categories.json");
+    const postsFile = await handle.getFileHandle("posts.json");
+    setCategoriesHandle(categoriesFile);
+    setPostsHandle(postsFile);
+    return { categoriesFile, postsFile };
+  }
+
+  // Cria uma nova categoria
+  async function createCategory(category: Category) {
+    if (!categoriesHandle) return;
+    const newCategories = [...categories, category];
+    await writeJsonFile(categoriesHandle, newCategories);
+  }
 
   // Cria um novo post
   async function createPost(post: Post) {
+    if (!postsHandle) return;
     const newPosts = [...posts, post];
-    downloadPostsJson(newPosts);
+    await writeJsonFile(postsHandle, newPosts);
   }
 
   // Deleta um post
   async function deletePost(postId: string) {
+    if (!postsHandle) return;
     const newPosts = posts.filter((item) => item.id !== postId);
-    downloadPostsJson(newPosts);
+    await writeJsonFile(postsHandle, newPosts);
   }
 
-  // Carrega os posts ao abrir a página
+  // Restaura a pasta selecionada do IndexedDB
   useEffect(() => {
-    async function loadPosts() {
-      const response = await fetch("/posts.json");
-      const data: Post[] = await response.json();
-      const formattedData: Post[] = data.map((post: Post) => ({
-        ...post,
-        date: new Date(post.date),
-      }));
-      const orderedData = formattedData.sort((a, b) => b.date.getTime() - a.date.getTime());
+    async function restoreDirectory() {
+      const handle = await getDirectoryHandle();
+      if (handle) {
+        const permission = await (handle as any).queryPermission({ mode: "readwrite" });
+        if (permission === "granted") {
+          setDirectory(handle);
+          await loadFileHandles(handle);
+          return;
+        }
+        const newPermission = await (handle as any).requestPermission({ mode: "readwrite" });
+        if (newPermission === "granted") {
+          setDirectory(handle);
+          await loadFileHandles(handle);
+        }
+      }
+    }
+    restoreDirectory();
+  }, []);
+
+  // Carrega os posts e categorias ao abrir a página
+  useEffect(() => {
+    async function loadData() {
+      const categoriesResponse = await fetch("/categories.json");
+      const categoriesData: Category[] = await categoriesResponse.json();
+      setCategories(categoriesData);
+      const postsResponse = await fetch("/posts.json");
+      const postsData: Post[] = await postsResponse.json();
+      const formattedData: Post[] = postsData.map((post: Post) => ({ ...post, date: new Date(post.date) })); // Formata a data para o tipo Date
+      const orderedData = formattedData.sort((a, b) => b.date.getTime() - a.date.getTime()); // Ordena para mostrar os últimos primeiro
       setPosts(orderedData);
     }
-    loadPosts();
-  });
+    loadData();
+  }, []);
 
   return (
-    <databaseContext.Provider value={{ posts, categories: [], createPost, deletePost }}>
+    <databaseContext.Provider value={{ posts, categories, directory, selectDirectory, createCategory, createPost, deletePost }}>
       <>{props.children}</>
     </databaseContext.Provider>
   );

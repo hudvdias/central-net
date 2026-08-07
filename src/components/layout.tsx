@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { NavLink, Outlet } from "react-router";
+import { databaseContext } from "../context/database-context";
 
 export function Layout() {
+  const useDatabase = useContext(databaseContext);
   const date = new Date().toLocaleDateString("pt-br", { dateStyle: "full" });
 
   return (
@@ -11,9 +14,13 @@ export function Layout() {
         <p className="text-center mt-4">Central Net</p>
 
         <div className="flex flex-col p-4">
-          <NavLink to="/" className="px-3 py-1 rounded hover:brightness-120 bg-emerald-600 w-full">
-            Informativo
-          </NavLink>
+          {useDatabase.categories.map((category) => {
+            return (
+              <NavLink key={category.id} to="/" className="px-3 py-1 rounded hover:brightness-120 bg-emerald-600 w-full">
+                {category.title}
+              </NavLink>
+            );
+          })}
         </div>
       </aside>
 
