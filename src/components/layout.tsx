@@ -25,7 +25,7 @@ export function Layout() {
       </aside>
 
       <main className="flex flex-col w-full">
-        <header className="p-4 border-b">Unimed - {date}</header>
+        <header className="p-4 border-b">Data: {date}</header>
         <Outlet />
       </main>
     </div>

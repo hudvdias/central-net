@@ -46,6 +46,28 @@ export function DatabaseContextProvider(props: Props) {
     if (!categoriesHandle) return;
     const newCategories = [...categories, category];
     await writeJsonFile(categoriesHandle, newCategories);
+    setCategories(newCategories);
+  }
+
+  // Edita uma categoria
+  async function editCategory(category: Category) {
+    if (!categoriesHandle) return;
+    const newCategories = categories.map((item) => {
+      if (item.id === category.id) {
+        return category;
+      }
+      return item;
+    });
+    await writeJsonFile(categoriesHandle, newCategories);
+    setCategories(newCategories);
+  }
+
+  // Deleta uma categoria
+  async function deleteCategory(categoryId: string) {
+    if (!categoriesHandle) return;
+    const newCategories = categories.filter((item) => item.id !== categoryId);
+    await writeJsonFile(categoriesHandle, newCategories);
+    setCategories(newCategories);
   }
 
   // Cria um novo post
@@ -62,7 +84,7 @@ export function DatabaseContextProvider(props: Props) {
     await writeJsonFile(postsHandle, newPosts);
   }
 
-  // Restaura a pasta selecionada do IndexedDB
+  // Restaura a pasta selecionada do IndexedDB ao carregar a aplicação
   useEffect(() => {
     async function restoreDirectory() {
       const handle = await getDirectoryHandle();
@@ -83,7 +105,7 @@ export function DatabaseContextProvider(props: Props) {
     restoreDirectory();
   }, []);
 
-  // Carrega os posts e categorias ao abrir a página
+  // Carrega os posts e categorias da página Public ao abrir a página
   useEffect(() => {
     async function loadData() {
       const categoriesResponse = await fetch("/categories.json");
@@ -99,7 +121,19 @@ export function DatabaseContextProvider(props: Props) {
   }, []);
 
   return (
-    <databaseContext.Provider value={{ posts, categories, directory, selectDirectory, createCategory, createPost, deletePost }}>
+    <databaseContext.Provider
+      value={{
+        posts,
+        categories,
+        directory,
+        selectDirectory,
+        createCategory,
+        editCategory,
+        deleteCategory,
+        createPost,
+        deletePost,
+      }}
+    >
       <>{props.children}</>
     </databaseContext.Provider>
   );

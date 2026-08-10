@@ -1,21 +1,24 @@
 import { useContext } from "react";
 import { NavLink } from "react-router";
-import { databaseContext } from "../../context/database-context";
-import type { Category } from "../../types/category";
+import { databaseContext } from "../../../context/database-context";
+import type { Category } from "../../../types/category";
 
 export function AdminCategoriesPage() {
   const useDatabase = useContext(databaseContext);
 
   async function deleteCategory(category: Category) {
-    console.log({ category });
+    const confirmation = confirm(`Deseja realmente deletar a categoria "${category.title}"?\nObserve que todas as publicações da categoria ficarão órfãs.`);
+    if (!confirmation) return;
+    useDatabase.deleteCategory(category.id);
+    alert("Categoria deletada com sucesso!");
     return;
   }
 
   return (
     <div className="flex flex-col p-4 max-w-7xl">
-      <p className="text-xl font-semibold">Administração de Conteúdo</p>
+      <p className="">Administração de Conteúdo</p>
 
-      <div className="flex flex-col gap-8 mt-8">
+      <div className="flex flex-col gap-8 mt-4 bg-white p-8 rounded-xl shadow-xl border border-gray-200">
         <div className="flex justify-between items-center">
           <p className="text-lg font-medium">Categorias ({useDatabase.categories.length})</p>
           <NavLink to="/admin/create-category" className="py-2 px-4 rounded bg-emerald-600 text-white w-max hover:brightness-120">
@@ -35,10 +38,19 @@ export function AdminCategoriesPage() {
             {useDatabase.categories.map((category) => {
               return (
                 <tr key={category.id}>
-                  <td className="border border-gray-300 p-2 text-left">{category.title}</td>
+                  <td className="border border-gray-300 p-2 text-left">
+                    <NavLink to={`${category.id}`} className="font-semibold text-blue-600 underline">
+                      {category.title}
+                    </NavLink>
+                  </td>
                   <td className="border border-gray-300 p-2 text-left">{0}</td>
                   <td className="border border-gray-300 p-2 text-right">
-                    <button className="px-2 py-1 rounded bg-emerald-600 text-white hover:brightness-120 cursor-pointer">Editar</button>
+                    <NavLink to={`${category.id}`} className="px-2 py-1 rounded bg-emerald-600 text-white hover:brightness-120">
+                      Publicações
+                    </NavLink>
+                    <NavLink to={`${category.id}/edit`} className="px-2 py-1 rounded bg-cyan-600 text-white hover:brightness-120 ml-3">
+                      Editar
+                    </NavLink>
                     <button className="px-2 py-1 rounded bg-red-600 text-white hover:brightness-120 cursor-pointer ml-3" onClick={() => deleteCategory(category)}>
                       Excluir
                     </button>

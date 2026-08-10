@@ -10,6 +10,8 @@ export type DatabaseContext = {
   selectDirectory: () => void;
 
   createCategory: (category: Category) => void;
+  editCategory: (category: Category) => void;
+  deleteCategory: (categoryId: string) => void;
 
   createPost: (post: Post) => void;
   deletePost: (postId: string) => void;
@@ -23,6 +25,8 @@ export const databaseContext = createContext<DatabaseContext>({
   selectDirectory: () => {},
 
   createCategory: () => {},
+  editCategory: () => {},
+  deleteCategory: () => {},
 
   createPost: () => {},
   deletePost: () => {},

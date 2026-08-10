@@ -1,10 +1,12 @@
 import { useContext } from "react";
-import { NavLink } from "react-router";
+import { NavLink, useParams } from "react-router";
 import { databaseContext } from "../../context/database-context";
 import type { Post } from "../../types/post";
 
 export function AdminPostsPage() {
   const useDatabase = useContext(databaseContext);
+  const { category_id } = useParams();
+  const category = useDatabase.categories.find((item) => item.id === category_id);
 
   async function deletePost(post: Post) {
     const confirmation = confirm(`Confirma a exclusão desta publicação: ${post.title}?`);
@@ -13,9 +15,25 @@ export function AdminPostsPage() {
     alert("Publicação excluída.\nSubstitua o arquivo 'posts.json'.");
   }
 
+  if (!category) {
+    return (
+      <div className="p-4 flex flex-col max-w-7xl">
+        <p className="bg-red-100 border border-red-300 text-red-600 rounded p-4">⚠️ Categoria não encontrada.</p>
+        <NavLink to="/admin" className="px-4 py-2 bg-emerald-600 text-white rounded mt-4 w-max">
+          Retornar
+        </NavLink>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col p-4 max-w-7xl">
-      <p className="text-xl font-semibold mb-8">Administração de Conteúdo</p>
+      <p className="text-xl font-semibold mb-8">
+        <NavLink to="/admin" className="text-blue-600">
+          Administração de Conteúdo
+        </NavLink>{" "}
+        - {category?.title}
+      </p>
 
       <div className="flex flex-col gap-8">
         <div className="flex justify-between items-center">
