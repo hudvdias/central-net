@@ -1,10 +1,17 @@
-import { useContext } from "react";
-import { NavLink, Outlet } from "react-router";
+import { useContext, useState, type SubmitEvent } from "react";
+import { NavLink, Outlet, useNavigate } from "react-router";
 import { databaseContext } from "../context/database-context";
 
 export function Layout() {
+  const [search, setSearch] = useState("");
   const useDatabase = useContext(databaseContext);
   const date = new Date().toLocaleDateString("pt-br", { dateStyle: "full" });
+  const navigate = useNavigate();
+
+  async function handleSearch(event: SubmitEvent<HTMLFormElement>) {
+    event.preventDefault();
+    navigate(`/search?search=${search}`);
+  }
 
   return (
     <div className="h-full flex" id="container">
@@ -27,7 +34,15 @@ export function Layout() {
       </aside>
 
       <main className="flex flex-col w-full">
-        <header className="p-4 border-b">Data: {date}</header>
+        <header className="p-4 border-b">
+          <p>Data: {date}</p>
+          <form className="flex gap-4 items-center mt-4" onSubmit={(event) => handleSearch(event)}>
+            <input type="search" name="search" className="px-4 py-2 rounded-lg shadow-lg bg-white w-xl border border-gray-500" placeholder="Pesquisar" value={search} onChange={(event) => setSearch(event.target.value)} />
+            <button type="submit" className="px-4 py-2 bg-emerald-600 text-white rounded cursor-pointer">
+              Pesquisar
+            </button>
+          </form>
+        </header>
         <Outlet />
       </main>
     </div>

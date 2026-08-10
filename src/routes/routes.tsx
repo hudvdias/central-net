@@ -8,13 +8,15 @@ import { AdminPostsPage } from "../pages/admin/posts/admin-posts";
 import { CreatePostPage } from "../pages/admin/posts/create-post";
 import { ContentPage } from "../pages/content";
 import { HomePage } from "../pages/home";
+import { SearchPage } from "../pages/search";
 
 export function AppRoutes() {
   return (
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<HomePage />} /> {/** Redireciona para o slug "informativo" */}
-        <Route path=":slug" element={<ContentPage />}></Route>
+        <Route path="search" element={<SearchPage />}></Route> {/** Página de pesquisa */}
+        <Route path=":slug" element={<ContentPage />}></Route> {/** Página de conteúdo das categorias */}
         <Route path="admin" element={<AdminLayout />}>
           <Route index element={<AdminCategoriesPage />}></Route> {/** Página inicial de admin - Lista as categorias e seleciona a pasta */}
           <Route path="create-category" element={<CreateCategoryPage />}></Route> {/** Cria uma categoria */}
