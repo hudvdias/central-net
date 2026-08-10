@@ -18,12 +18,17 @@ export function AdminCategoriesPage() {
     <div className="flex flex-col p-4 max-w-7xl">
       <p className="">Administração de Conteúdo</p>
 
-      <div className="flex flex-col gap-8 mt-4 bg-white p-8 rounded-xl shadow-xl border border-gray-200">
+      <div className="flex flex-col gap-8 mt-4 bg-white p-8 rounded-lg shadow-lg">
         <div className="flex justify-between items-center">
           <p className="text-lg font-medium">Categorias ({useDatabase.categories.length})</p>
-          <NavLink to="/admin/create-category" className="py-2 px-4 rounded bg-emerald-600 text-white w-max hover:brightness-120">
-            Criar nova categoria
-          </NavLink>
+          <div className="flex items-center gap-4">
+            <NavLink to="/admin/create-post" className="py-2 px-4 rounded bg-emerald-600 text-white w-max hover:brightness-120">
+              Criar nova publicação
+            </NavLink>
+            <NavLink to="/admin/create-category" className="py-2 px-4 rounded bg-emerald-600 text-white w-max hover:brightness-120">
+              Criar nova categoria
+            </NavLink>
+          </div>
         </div>
 
         <table className="table-auto border rounded border-gray-300">
@@ -36,6 +41,8 @@ export function AdminCategoriesPage() {
           </thead>
           <tbody>
             {useDatabase.categories.map((category) => {
+              const postsQuantity = useDatabase.posts.filter((item) => item.categoryId === category.id).length;
+
               return (
                 <tr key={category.id}>
                   <td className="border border-gray-300 p-2 text-left">
@@ -43,7 +50,7 @@ export function AdminCategoriesPage() {
                       {category.title}
                     </NavLink>
                   </td>
-                  <td className="border border-gray-300 p-2 text-left">{0}</td>
+                  <td className="border border-gray-300 p-2 text-left">{postsQuantity}</td>
                   <td className="border border-gray-300 p-2 text-right">
                     <NavLink to={`${category.id}`} className="px-2 py-1 rounded bg-emerald-600 text-white hover:brightness-120">
                       Publicações

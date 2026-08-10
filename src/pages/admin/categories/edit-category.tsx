@@ -49,7 +49,7 @@ export function EditCategoryPage() {
       </div>
 
       {/* form */}
-      <form className="flex flex-col p-8 bg-white shadow-xl rounded-xl max-w-7xl" onSubmit={(event) => editCategory(event)}>
+      <form className="flex flex-col p-8 bg-white shadow-lg rounded-lg max-w-7xl" onSubmit={(event) => editCategory(event)}>
         <p className="mb-4 font-semibold text-lg">Editar categoria - {category.title}</p>
         <label htmlFor="title">Título*</label>
         <input type="text" name="title" placeholder="Digite um título" required value={title} onChange={(event) => setTitle(event.target.value)} className="px-3 py-1 border rounded" />

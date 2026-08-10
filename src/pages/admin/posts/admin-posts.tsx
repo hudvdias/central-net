@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { NavLink, useParams } from "react-router";
-import { databaseContext } from "../../context/database-context";
-import type { Post } from "../../types/post";
+import { databaseContext } from "../../../context/database-context";
+import type { Post } from "../../../types/post";
 
 export function AdminPostsPage() {
   const useDatabase = useContext(databaseContext);
@@ -12,7 +12,7 @@ export function AdminPostsPage() {
     const confirmation = confirm(`Confirma a exclusão desta publicação: ${post.title}?`);
     if (!confirmation) return;
     useDatabase.deletePost(post.id);
-    alert("Publicação excluída.\nSubstitua o arquivo 'posts.json'.");
+    alert("Publicação excluída.\n");
   }
 
   if (!category) {
@@ -28,17 +28,21 @@ export function AdminPostsPage() {
 
   return (
     <div className="flex flex-col p-4 max-w-7xl">
-      <p className="text-xl font-semibold mb-8">
-        <NavLink to="/admin" className="text-blue-600">
+      {/* breadcrumbs */}
+      <div className="flex items-center gap-2 mb-4">
+        <NavLink to="/admin" className="text-blue-600 underline">
           Administração de Conteúdo
-        </NavLink>{" "}
-        - {category?.title}
-      </p>
+        </NavLink>
+        <span>{">"}</span>
+        <span>
+          Publicações em <b>{category.title}</b>
+        </span>
+      </div>
 
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-8 bg-white p-8 rounded-lg shadow-lg">
         <div className="flex justify-between items-center">
-          <p className="text-lg font-medium">Publicações ({useDatabase.posts.length})</p>
-          <NavLink to="/admin/create-post" className="py-2 px-4 rounded bg-emerald-600 text-white w-max hover:brightness-120">
+          <p className="text-lg font-medium">Publicações em Informativo ({useDatabase.posts.length})</p>
+          <NavLink to={`/admin/create-post?category_id=${category.id}`} className="py-2 px-4 rounded bg-emerald-600 text-white w-max hover:brightness-120">
             Criar nova publicação
           </NavLink>
         </div>

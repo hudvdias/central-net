@@ -3,5 +3,10 @@
     "id": "2160c5c4-149b-4bbe-89ca-2ba8c24223ca",
     "title": "Informativo",
     "slug": "informativo"
+  },
+  {
+    "id": "907a2e70-c5f2-45eb-b80e-c37515531497",
+    "title": "Cancelamento",
+    "slug": "cancelamento"
   }
 ]

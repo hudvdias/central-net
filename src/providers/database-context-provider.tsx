@@ -75,6 +75,7 @@ export function DatabaseContextProvider(props: Props) {
     if (!postsHandle) return;
     const newPosts = [...posts, post];
     await writeJsonFile(postsHandle, newPosts);
+    setPosts(newPosts);
   }
 
   // Deleta um post
@@ -82,6 +83,7 @@ export function DatabaseContextProvider(props: Props) {
     if (!postsHandle) return;
     const newPosts = posts.filter((item) => item.id !== postId);
     await writeJsonFile(postsHandle, newPosts);
+    setPosts(newPosts);
   }
 
   // Restaura a pasta selecionada do IndexedDB ao carregar a aplicação
