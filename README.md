@@ -2,6 +2,8 @@
 
 Projeto para melhoria da Central Net utilizando React.
 
+**Central Net** é um diretório onde é reunida toda a informação de auxílio para a equipe de atendimento ao cliente da Unimed Leste Fluminense.
+
 ## Como rodar o projeto
 
 1. Clone o repositório para sua máquina local;
