@@ -15,7 +15,7 @@ export function AdminCategoriesPage() {
   }
 
   return (
-    <div className="flex flex-col p-8">
+    <div className="flex flex-col p-8 overflow-auto">
       <p className="">Administração de Conteúdo</p>
 
       <div className="flex flex-col gap-8 mt-4 bg-white p-8 rounded-lg shadow-lg">

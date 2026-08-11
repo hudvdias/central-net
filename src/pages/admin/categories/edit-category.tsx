@@ -28,7 +28,7 @@ export function EditCategoryPage() {
 
   if (!category) {
     return (
-      <div className="p-4 flex flex-col max-w-7xl">
+      <div className="p-4 flex flex-col">
         <p className="bg-red-100 border border-red-300 text-red-600 rounded p-4">⚠️ Categoria não encontrada.</p>
         <NavLink to="/admin" className="px-4 py-2 bg-emerald-600 text-white rounded mt-4 w-max">
           Retornar
@@ -38,7 +38,7 @@ export function EditCategoryPage() {
   }
 
   return (
-    <div className="p-4">
+    <div className="p-8 overflow-auto">
       {/* breadcrumbs */}
       <div className="flex items-center gap-2 mb-4">
         <NavLink to="/admin" className="text-blue-600 underline">
@@ -49,12 +49,12 @@ export function EditCategoryPage() {
       </div>
 
       {/* form */}
-      <form className="flex flex-col p-8 bg-white shadow-lg rounded-lg max-w-7xl" onSubmit={(event) => editCategory(event)}>
+      <form className="flex flex-col p-8 bg-white shadow-lg rounded-lg" onSubmit={(event) => editCategory(event)}>
         <p className="mb-4 font-semibold text-lg">Editar categoria - {category.title}</p>
         <label htmlFor="title">Título*</label>
         <input type="text" name="title" placeholder="Digite um título" required value={title} onChange={(event) => setTitle(event.target.value)} className="px-3 py-1 border rounded" />
-        <button type="submit" className="px-4 py-2 rounded bg-emerald-600 text-white cursor-pointer mt-4 hover:brightness-120">
-          Criar
+        <button type="submit" className="px-4 py-2 rounded bg-emerald-600 text-white cursor-pointer mt-6 hover:brightness-120">
+          Salvar edição
         </button>
       </form>
     </div>

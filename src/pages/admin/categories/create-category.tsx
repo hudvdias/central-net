@@ -24,7 +24,7 @@ export function CreateCategoryPage() {
   }
 
   return (
-    <div className="p-4">
+    <div className="flex flex-col p-8 overflow-auto">
       {/* breadcrumbs */}
       <div className="flex items-center gap-2 mb-4">
         <NavLink to="/admin" className="text-blue-600 underline">
@@ -35,11 +35,11 @@ export function CreateCategoryPage() {
       </div>
 
       {/* form */}
-      <form className="flex flex-col p-8 bg-white shadow-lg rounded-lg max-w-7xl" onSubmit={(event) => createCategory(event)}>
+      <form className="flex flex-col p-8 bg-white shadow-lg rounded-lg" onSubmit={(event) => createCategory(event)}>
         <p className="mb-4 font-semibold text-lg">Criar nova categoria</p>
         <label htmlFor="title">Título*</label>
         <input type="text" name="title" placeholder="Digite um título" required value={title} onChange={(event) => setTitle(event.target.value)} className="px-3 py-1 border rounded" />
-        <button type="submit" className="px-4 py-2 rounded bg-emerald-600 text-white cursor-pointer mt-4 hover:brightness-120">
+        <button type="submit" className="px-4 py-2 rounded bg-emerald-600 text-white cursor-pointer mt-6 hover:brightness-120">
           Criar
         </button>
       </form>
