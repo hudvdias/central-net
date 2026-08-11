@@ -10,6 +10,8 @@ export function Layout() {
 
   async function handleSearch(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (search.length < 2) return;
+
     navigate(`/search?search=${search}`);
   }
 
@@ -34,10 +36,10 @@ export function Layout() {
       </aside>
 
       <main className="flex flex-col w-full">
-        <header className="p-4 border-b">
-          <p>Data: {date}</p>
+        <header className="p-8 border-b">
+          <p className="capitalize">Hoje: {date}</p>
           <form className="flex gap-4 items-center mt-4" onSubmit={(event) => handleSearch(event)}>
-            <input type="search" name="search" className="px-4 py-2 rounded-lg shadow-lg bg-white w-xl border border-gray-500" placeholder="Pesquisar" value={search} onChange={(event) => setSearch(event.target.value)} />
+            <input type="search" name="search" className="px-4 py-2 rounded-lg shadow-lg bg-white w-full border border-gray-500" placeholder="Pesquisar" value={search} onChange={(event) => setSearch(event.target.value)} />
             <button type="submit" className="px-4 py-2 bg-emerald-600 text-white rounded cursor-pointer">
               Pesquisar
             </button>

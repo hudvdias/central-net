@@ -8,7 +8,7 @@ export function AdminLayout() {
   // Checa se tem um diretório selecionado, se não, bloqueia a visualização da página
   if (!useDatabase.directory) {
     return (
-      <div className="p-4 max-w-7xl">
+      <div className="p-4">
         <div className="border border-amber-600 bg-amber-100 rounded p-4 flex items-center justify-between mt-4">
           <p>
             <span className="text-xl">⚠️</span> Você precisa selecionar a pasta de dados para salvar as edições!
