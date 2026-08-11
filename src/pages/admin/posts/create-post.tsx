@@ -14,6 +14,7 @@ export function CreatePostPage() {
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
   const [content, setContent] = useState("");
   const [categoryId, setCategoryId] = useState(category?.id || "");
+  const [file, setFile] = useState<File | undefined>(undefined);
 
   function createPost(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -25,7 +26,7 @@ export function CreatePostPage() {
       date: new Date(date),
       categoryId,
     };
-    useDatabase.createPost(post);
+    useDatabase.createPost({ post, file });
     setTitle("");
     alert("Publicação criada com sucesso!");
     navigate("/admin");
@@ -78,6 +79,11 @@ export function CreatePostPage() {
           Conteúdo*
         </label>
         <textarea name="content" placeholder="Digite o conteúdo da publicação" required value={content} onChange={(event) => setContent(event.target.value)} className="h-96 p-4 leading-5 border rounded"></textarea>
+
+        <label htmlFor="file" className="mt-4">
+          Documento (opcional)
+        </label>
+        <input className="border rounded p-2 cursor-pointer" name="file" type="file" onChange={(event) => setFile(event.target.files?.[0] || undefined)} />
 
         <button type="submit" className="px-4 py-2 rounded bg-emerald-600 text-white cursor-pointer mt-8 hover:brightness-120">
           Criar

@@ -1,8 +1,10 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { databaseContext } from "../context/database-context";
+import { databaseContext, type CreatePostProps } from "../context/database-context";
 import type { Category } from "../types/category";
 import type { Post } from "../types/post";
+import { createSlug } from "../utils/create-slug";
 import { getDirectoryHandle, saveDirectoryHandle } from "../utils/file-system-storage";
+
 type Props = { children: ReactNode };
 
 export function DatabaseContextProvider(props: Props) {
@@ -41,6 +43,17 @@ export function DatabaseContextProvider(props: Props) {
     return { categoriesFile, postsFile };
   }
 
+  // Salva documentos das publicações
+  async function saveDocument(file: File, fileName: string) {
+    if (!directory) throw new Error("Diretório não selecionado.");
+    const documentsDirectory = await directory.getDirectoryHandle("documents", { create: true });
+    const fileHandle = await documentsDirectory.getFileHandle(fileName, { create: true });
+    const writable = await fileHandle.createWritable();
+    await writable.write(file);
+    await writable.close();
+    return `/documents/${fileName}`;
+  }
+
   // Cria uma nova categoria
   async function createCategory(category: Category) {
     if (!categoriesHandle) return;
@@ -69,9 +82,14 @@ export function DatabaseContextProvider(props: Props) {
   }
 
   // Cria um novo post
-  async function createPost(post: Post) {
+  async function createPost(props: CreatePostProps) {
     if (!postsHandle) return;
-    const newPosts = [...posts, post];
+    const newPost = props.post;
+    if (props.file) {
+      const documentLink = await saveDocument(props.file, createSlug(props.post.title));
+      newPost.documentLink = documentLink;
+    }
+    const newPosts = [...posts, newPost];
     await writeJsonFile(postsHandle, newPosts);
     setPosts(newPosts);
   }

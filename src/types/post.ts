@@ -4,4 +4,6 @@ export type Post = {
   title: string;
   content: string;
   date: Date;
+  documentLink?: string;
+  imageLink?: string;
 };
