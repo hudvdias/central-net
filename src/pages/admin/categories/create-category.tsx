@@ -1,5 +1,5 @@
 import { useContext, useState, type SubmitEvent } from "react";
-import { NavLink, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { databaseContext } from "../../../context/database-context";
 import type { Category } from "../../../types/category";
 import { createSlug } from "../../../utils/create-slug";
@@ -27,9 +27,9 @@ export function CreateCategoryPage() {
     <div className="flex flex-col p-8 overflow-auto">
       {/* breadcrumbs */}
       <div className="flex items-center gap-2 mb-4">
-        <NavLink to="/admin" className="text-blue-600 underline">
+        <Link to="/admin" className="text-blue-600 underline">
           Administração de Conteúdo
-        </NavLink>
+        </Link>
         <span>{">"}</span>
         <span>Criar Categoria</span>
       </div>

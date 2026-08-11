@@ -1,8 +1,22 @@
 [
   {
+    "id": "cdce2868-9046-4ea6-a78d-fd045d9b1883",
+    "title": "Testando publicações órfãs",
+    "content": "Essa publicação serve para testar o funcionamento e a listagem de publicações órfãs.",
+    "date": "2026-08-11T00:00:00.000Z",
+    "categoryId": "503ab046-1b37-4432-b852-3c0b990c7202"
+  },
+  {
+    "id": "e200d425-8a00-4da4-8525-f2b9693fb80a",
+    "title": "Cancelamento de Plano PJ",
+    "content": "Reforçamos que, para contratos Pessoa Jurídica (PJ), as tratativas de cancelamento diferem das aplicadas aos contratos Pessoa Física (PF).\nNos casos de clientes empresariais, há previsão contratual de aviso prévio, não sendo, portanto, possível o cancelamento imediato.\nAdicionalmente, destacamos que o contrato empresarial não segue a mesma lógica de faturamento dos contratos individuais.\nO cliente PJ não realiza pagamento “para uso”, mas sim em função do período de vigência contratual.\nSolicitar ao cliente que entre em contato com o Relações Empresariais para maiores informações.\n\nEm casos de clientes PJ com informação de plano por adesão, o cancelamento poderá ser realizado na Central.\nContratos que na descrição estão com a informação de A/P são contratos por adesão sendo cancelados na Central.\nEm caso de débitos enviar para o setor financeiro.",
+    "date": "2026-08-10T00:00:00.000Z",
+    "categoryId": "907a2e70-c5f2-45eb-b80e-c37515531497"
+  },
+  {
     "id": "4262f8b9-2a82-4cac-9b0c-6952782c01e4",
     "title": "Prestador de Oncologia: Transição da Oncoclínica/Navarra para a Oncomed",
-    "content": "Equipe,\n\nInformamos que, a partir de 15/08/2026, os clientes oncológicos atualmente atendidos pela Oncoclínica/Navarra serão direcionados para o prestador Oncomed.\n\nRessaltamos que a Oncomed atenderá todos os clientes Unimed, independentemente de serem beneficiários da Unimed Leste Fluminense ou de outra Unimed.\n\nImportante: A Oncomed já está realizando o acolhimento a esses clientes por meio do WhatsApp exclusivo:\n(21) 99677-6862\n\nDurante o atendimento, é fundamental que nossa equipe transmita segurança e acolhimento aos clientes, reforçando que não haverá interrupção em seus  ratamentos. Informem também que, até o dia 12/08/2026, contaremos com uma colaboradora dedicada ao acolhimento desses pacientes,  presencialmente, prestando todas as orientações necessárias para que a transição ocorra de forma clara, tranquila e segura.\n\nPor fim, informamos que teremos atendimento nas unidades da Oncomed em São Gonçalo e Niterói (Icaraí e São Francisco), para os serviços de consulta, quimioterapia e radioterapia.",
+    "content": "Equipe,\nInformamos que, a partir de 15/08/2026, os clientes oncológicos atualmente atendidos pela Oncoclínica/Navarra serão direcionados para o prestador Oncomed.\nRessaltamos que a Oncomed atenderá todos os clientes Unimed, independentemente de serem beneficiários da Unimed Leste Fluminense ou de outra Unimed.\n\nImportante: A Oncomed já está realizando o acolhimento a esses clientes por meio do WhatsApp exclusivo: (21) 99677-6862\n\nDurante o atendimento, é fundamental que nossa equipe transmita segurança e acolhimento aos clientes, reforçando que não haverá interrupção em seus  ratamentos. Informem também que, até o dia 12/08/2026, contaremos com uma colaboradora dedicada ao acolhimento desses pacientes,  presencialmente, prestando todas as orientações necessárias para que a transição ocorra de forma clara, tranquila e segura.\n\nPor fim, informamos que teremos atendimento nas unidades da Oncomed em São Gonçalo e Niterói (Icaraí e São Francisco), para os serviços de consulta, quimioterapia e radioterapia.",
     "date": "2026-08-05T00:00:00.000Z",
     "categoryId": "2160c5c4-149b-4bbe-89ca-2ba8c24223ca"
   },
@@ -12,12 +26,5 @@
     "content": "Equipe, \n\nSegue a rotina para agendamento de Teleconsulta.\n\nQuando o cliente não conseguir agendamento na rede para determinada especialidade, deverá ser realizado o direcionamento para a teleconsulta nas especialidades disponíveis na plataforma Conexa.\n\nAntes de realizar o encaminhamento, verificar:\n- Elegibilidade do cliente no sistema.\n- Os registros anteriores, se o cliente já realizou alguma consulta por telemedicina ou se já buscou atendimento na rede de prestadores para a especialidade solicitada.\n\nRotina – Terapias\n- Verificar a idade do cliente.\n- Confirmar se é primeiro atendimento.\n- Seguir a rotina de triagem para pacientes até 18 anos (encaminhamento ao CATEA).\n\nAbertura dos registros: O registro deverá ser aberto de acordo com a demanda solicitada e encaminhado para o Destino 245 – Agendamento Conexa.\n\nClassificação dos registros:\n89 – Consulta básica (Pediatria, Clínica Médica, Cirurgia Geral, Ginecologia e Obstetrícia)\n90 – Consulta nas demais especialidades\n91 – Consulta / sessão de Terapias (Fonoaudiologia, Psicologia, Terapia Ocupacional, \nPsicomotricidade, Psicopedagogia etc.)\n92 – Consulta / sessão com Nutricionista\n\nImportante:\nPara solicitações de terapias, solicitar ao cliente o envio do pedido médico, incluindo também encaminhamento para nutricionista, quando aplicável.\nO questionário anexo ao registro deverá ser preenchido corretamente.\n\nOrientações ao cliente:\nA consulta é realizada de forma on-line por meio da Plataforma Conexa, com profissionais de saúde qualificados (nome do aplicativo CONEXA SAÚDE).\n\nComo funciona:\n- A consulta é realizada por vídeo, utilizando celular, computador ou tablet com acesso à internet.\n- Após o agendamento, o cliente receberá um link de acesso à consulta.\n- No horário marcado, basta clicar no link e acessar a plataforma para iniciar o atendimento com o profissional.\n\nImportante:\n- Acesse o link alguns minutos antes do horário agendado.\n- Esteja em um local tranquilo e com boa conexão de internet.\n- Tenha em mãos documentos pessoais e exames, caso o profissional solicite durante a consulta.\n\nTerapias Oferecidas : Fonoaudiologia, psicologia, Nutrição. ",
     "date": "2026-08-01T00:00:00.000Z",
     "categoryId": "2160c5c4-149b-4bbe-89ca-2ba8c24223ca"
-  },
-  {
-    "id": "e200d425-8a00-4da4-8525-f2b9693fb80a",
-    "title": "Cancelamento de Plano PJ",
-    "content": "Reforçamos que, para contratos Pessoa Jurídica (PJ), as tratativas de cancelamento diferem das aplicadas aos contratos Pessoa Física (PF).\nNos casos de clientes empresariais, há previsão contratual de aviso prévio, não sendo, portanto, possível o cancelamento imediato.\nAdicionalmente, destacamos que o contrato empresarial não segue a mesma lógica de faturamento dos contratos individuais.\nO cliente PJ não realiza pagamento “para uso”, mas sim em função do período de vigência contratual.\nSolicitar ao cliente que entre em contato com o Relações Empresariais para maiores informações.\n\nEm casos de clientes PJ com informação de plano por adesão, o cancelamento poderá ser realizado na Central.\nContratos que na descrição estão com a informação de A/P são contratos por adesão sendo cancelados na Central.\nEm caso de débitos enviar para o setor financeiro.",
-    "date": "2026-08-10T00:00:00.000Z",
-    "categoryId": "907a2e70-c5f2-45eb-b80e-c37515531497"
   }
 ]

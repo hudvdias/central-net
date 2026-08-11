@@ -40,7 +40,7 @@ export function Layout() {
           <p className="capitalize">Hoje: {date}</p>
           <form className="flex gap-4 items-center mt-4" onSubmit={(event) => handleSearch(event)}>
             <input type="search" name="search" className="px-4 py-2 rounded-lg shadow-lg bg-white w-full border border-gray-500" placeholder="Pesquisar" value={search} onChange={(event) => setSearch(event.target.value)} />
-            <button type="submit" className="px-4 py-2 bg-emerald-600 text-white rounded cursor-pointer">
+            <button type="submit" className="px-4 py-2 bg-emerald-600 text-white rounded cursor-pointer hover:brightness-120">
               Pesquisar
             </button>
           </form>

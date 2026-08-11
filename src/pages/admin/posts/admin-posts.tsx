@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { NavLink, useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import { databaseContext } from "../../../context/database-context";
 import type { Post } from "../../../types/post";
 
@@ -7,6 +7,7 @@ export function AdminPostsPage() {
   const useDatabase = useContext(databaseContext);
   const { category_id } = useParams();
   const category = useDatabase.categories.find((item) => item.id === category_id);
+  const posts = useDatabase.posts.filter((item) => item.categoryId === category_id);
 
   async function deletePost(post: Post) {
     const confirmation = confirm(`Confirma a exclusão desta publicação: ${post.title}?`);
@@ -19,20 +20,20 @@ export function AdminPostsPage() {
     return (
       <div className="p-4 flex flex-col max-w-7xl">
         <p className="bg-red-100 border border-red-300 text-red-600 rounded p-4">⚠️ Categoria não encontrada.</p>
-        <NavLink to="/admin" className="px-4 py-2 bg-emerald-600 text-white rounded mt-4 w-max">
+        <Link to="/admin" className="px-4 py-2 bg-emerald-600 text-white rounded mt-4 w-max">
           Retornar
-        </NavLink>
+        </Link>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col p-4 max-w-7xl">
+    <div className="flex flex-col p-8">
       {/* breadcrumbs */}
       <div className="flex items-center gap-2 mb-4">
-        <NavLink to="/admin" className="text-blue-600 underline">
+        <Link to="/admin" className="text-blue-600 underline">
           Administração de Conteúdo
-        </NavLink>
+        </Link>
         <span>{">"}</span>
         <span>
           Publicações em <b>{category.title}</b>
@@ -41,10 +42,12 @@ export function AdminPostsPage() {
 
       <div className="flex flex-col gap-8 bg-white p-8 rounded-lg shadow-lg">
         <div className="flex justify-between items-center">
-          <p className="text-lg font-medium">Publicações em Informativo ({useDatabase.posts.length})</p>
-          <NavLink to={`/admin/create-post?category_id=${category.id}`} className="py-2 px-4 rounded bg-emerald-600 text-white w-max hover:brightness-120">
+          <p className="text-lg font-medium">
+            Publicações em {category.title} ({posts.length})
+          </p>
+          <Link to={`/admin/create-post?category_id=${category.id}`} className="py-2 px-4 rounded bg-emerald-600 text-white w-max hover:brightness-120">
             Criar nova publicação
-          </NavLink>
+          </Link>
         </div>
 
         <table className="table-auto border rounded border-gray-300">
@@ -56,14 +59,16 @@ export function AdminPostsPage() {
             </tr>
           </thead>
           <tbody>
-            {useDatabase.posts.map((post) => {
+            {posts.map((post) => {
               const formattedDate = new Date(post.date).toLocaleString("pt-br", { dateStyle: "short" });
               return (
                 <tr key={post.id}>
                   <td className="border border-gray-300 p-2 text-left">{formattedDate}</td>
                   <td className="border border-gray-300 p-2 text-left">{post.title}</td>
                   <td className="border border-gray-300 p-2 text-right">
-                    <button className="px-2 py-1 rounded bg-emerald-600 text-white hover:brightness-120 cursor-pointer">Editar</button>
+                    <Link to={`/admin/edit-post/${post.id}`} className="px-2 py-1 rounded bg-emerald-600 text-white hover:brightness-120 cursor-pointer">
+                      Editar
+                    </Link>
                     <button className="px-2 py-1 rounded bg-red-600 text-white hover:brightness-120 cursor-pointer ml-3" onClick={() => deletePost(post)}>
                       Excluir
                     </button>

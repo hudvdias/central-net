@@ -14,6 +14,7 @@ export type DatabaseContext = {
   deleteCategory: (categoryId: string) => void;
 
   createPost: (post: Post) => void;
+  editPost: (post: Post) => void;
   deletePost: (postId: string) => void;
 };
 
@@ -29,5 +30,6 @@ export const databaseContext = createContext<DatabaseContext>({
   deleteCategory: () => {},
 
   createPost: () => {},
+  editPost: () => {},
   deletePost: () => {},
 });

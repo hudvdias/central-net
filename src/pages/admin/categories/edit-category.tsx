@@ -1,5 +1,5 @@
 import { useContext, useState, type SubmitEvent } from "react";
-import { NavLink, useNavigate, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { databaseContext } from "../../../context/database-context";
 import type { Category } from "../../../types/category";
 import { createSlug } from "../../../utils/create-slug";
@@ -30,9 +30,9 @@ export function EditCategoryPage() {
     return (
       <div className="p-4 flex flex-col">
         <p className="bg-red-100 border border-red-300 text-red-600 rounded p-4">⚠️ Categoria não encontrada.</p>
-        <NavLink to="/admin" className="px-4 py-2 bg-emerald-600 text-white rounded mt-4 w-max">
+        <Link to="/admin" className="px-4 py-2 bg-emerald-600 text-white rounded mt-4 w-max">
           Retornar
-        </NavLink>
+        </Link>
       </div>
     );
   }
@@ -41,9 +41,9 @@ export function EditCategoryPage() {
     <div className="p-8 overflow-auto">
       {/* breadcrumbs */}
       <div className="flex items-center gap-2 mb-4">
-        <NavLink to="/admin" className="text-blue-600 underline">
+        <Link to="/admin" className="text-blue-600 underline">
           Administração de Conteúdo
-        </NavLink>
+        </Link>
         <span>{">"}</span>
         <span>Editar Categoria</span>
       </div>
@@ -54,7 +54,7 @@ export function EditCategoryPage() {
         <label htmlFor="title">Título*</label>
         <input type="text" name="title" placeholder="Digite um título" required value={title} onChange={(event) => setTitle(event.target.value)} className="px-3 py-1 border rounded" />
         <button type="submit" className="px-4 py-2 rounded bg-emerald-600 text-white cursor-pointer mt-6 hover:brightness-120">
-          Salvar edição
+          Salvar alterações
         </button>
       </form>
     </div>

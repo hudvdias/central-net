@@ -6,6 +6,7 @@ import { CreateCategoryPage } from "../pages/admin/categories/create-category";
 import { EditCategoryPage } from "../pages/admin/categories/edit-category";
 import { AdminPostsPage } from "../pages/admin/posts/admin-posts";
 import { CreatePostPage } from "../pages/admin/posts/create-post";
+import { EditPostPage } from "../pages/admin/posts/edit-post";
 import { ContentPage } from "../pages/content";
 import { HomePage } from "../pages/home";
 import { SearchPage } from "../pages/search";
@@ -23,7 +24,7 @@ export function AppRoutes() {
           <Route path=":category_id" element={<AdminPostsPage />}></Route> {/** Lista os Posts de uma página */}
           <Route path=":category_id/edit" element={<EditCategoryPage />}></Route> {/** Edita a categoria */}
           <Route path="create-post" element={<CreatePostPage />}></Route> {/** Cria uma postagem */}
-          <Route path="edit-post/:post_id" element={<CreatePostPage />}></Route> {/** Edita uma postagem */}
+          <Route path="edit-post/:post_id" element={<EditPostPage />}></Route> {/** Edita uma postagem */}
         </Route>
       </Route>
     </Routes>

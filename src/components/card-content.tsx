@@ -46,7 +46,7 @@ export function CardContent(props: Props) {
         </button>
       </div>
       <div className="py-6">
-        <p className="whitespace-pre-wrap leading-5.5">{props.post.content}</p>
+        <p className="whitespace-pre-wrap leading-5">{props.post.content}</p>
       </div>
     </div>
   );

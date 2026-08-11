@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { NavLink } from "react-router";
+import { Link } from "react-router";
 import { databaseContext } from "../../../context/database-context";
 import type { Category } from "../../../types/category";
 
@@ -22,12 +22,12 @@ export function AdminCategoriesPage() {
         <div className="flex justify-between items-center">
           <p className="text-lg font-medium">Categorias ({useDatabase.categories.length})</p>
           <div className="flex items-center gap-4">
-            <NavLink to="/admin/create-post" className="py-2 px-4 rounded bg-emerald-600 text-white w-max hover:brightness-120">
+            <Link to="/admin/create-post" className="py-2 px-4 rounded bg-emerald-600 text-white w-max hover:brightness-120">
               Criar nova publicação
-            </NavLink>
-            <NavLink to="/admin/create-category" className="py-2 px-4 rounded bg-emerald-600 text-white w-max hover:brightness-120">
+            </Link>
+            <Link to="/admin/create-category" className="py-2 px-4 rounded bg-emerald-600 text-white w-max hover:brightness-120">
               Criar nova categoria
-            </NavLink>
+            </Link>
           </div>
         </div>
 
@@ -46,18 +46,18 @@ export function AdminCategoriesPage() {
               return (
                 <tr key={category.id}>
                   <td className="border border-gray-300 p-2 text-left">
-                    <NavLink to={`${category.id}`} className="font-semibold text-blue-600 underline">
+                    <Link to={`${category.id}`} className="font-semibold text-blue-600 underline">
                       {category.title}
-                    </NavLink>
+                    </Link>
                   </td>
                   <td className="border border-gray-300 p-2 text-left">{postsQuantity}</td>
                   <td className="border border-gray-300 p-2 text-right">
-                    <NavLink to={`${category.id}`} className="px-2 py-1 rounded bg-emerald-600 text-white hover:brightness-120">
+                    <Link to={`${category.id}`} className="px-2 py-1 rounded bg-emerald-600 text-white hover:brightness-120">
                       Publicações
-                    </NavLink>
-                    <NavLink to={`${category.id}/edit`} className="px-2 py-1 rounded bg-cyan-600 text-white hover:brightness-120 ml-3">
+                    </Link>
+                    <Link to={`${category.id}/edit`} className="px-2 py-1 rounded bg-cyan-600 text-white hover:brightness-120 ml-3">
                       Editar
-                    </NavLink>
+                    </Link>
                     <button className="px-2 py-1 rounded bg-red-600 text-white hover:brightness-120 cursor-pointer ml-3" onClick={() => deleteCategory(category)}>
                       Excluir
                     </button>

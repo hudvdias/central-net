@@ -53,9 +53,7 @@ export function DatabaseContextProvider(props: Props) {
   async function editCategory(category: Category) {
     if (!categoriesHandle) return;
     const newCategories = categories.map((item) => {
-      if (item.id === category.id) {
-        return category;
-      }
+      if (item.id === category.id) return category;
       return item;
     });
     await writeJsonFile(categoriesHandle, newCategories);
@@ -74,6 +72,17 @@ export function DatabaseContextProvider(props: Props) {
   async function createPost(post: Post) {
     if (!postsHandle) return;
     const newPosts = [...posts, post];
+    await writeJsonFile(postsHandle, newPosts);
+    setPosts(newPosts);
+  }
+
+  // Edita um post
+  async function editPost(post: Post) {
+    if (!postsHandle) return;
+    const newPosts = posts.map((item) => {
+      if (item.id === post.id) return post;
+      return item;
+    });
     await writeJsonFile(postsHandle, newPosts);
     setPosts(newPosts);
   }
@@ -133,6 +142,7 @@ export function DatabaseContextProvider(props: Props) {
         editCategory,
         deleteCategory,
         createPost,
+        editPost,
         deletePost,
       }}
     >
