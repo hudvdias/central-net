@@ -1,5 +1,6 @@
-import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
+import { ClipboardDocumentIcon, MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
+import { useContext, useState } from "react";
+import { databaseContext } from "../context/database-context";
 import type { Post } from "../types/post";
 
 type Props = {
@@ -9,6 +10,8 @@ type Props = {
 
 export function CardContent(props: Props) {
   const [open, setOpen] = useState(props.initialOpen || false);
+  const useDatabase = useContext(databaseContext);
+  const category = useDatabase.categories.find((item) => item.id === props.post.categoryId);
 
   const formattedDate = new Date(props.post.date).toLocaleDateString("pt-br");
   // const useDatabase = useContext(databaseContext);
@@ -16,6 +19,12 @@ export function CardContent(props: Props) {
 
   function handleOpen() {
     setOpen((prev) => !prev);
+  }
+
+  function onCopyLink() {
+    if (!category) return;
+    const url = `${window.location.origin}/${category.slug}/${props.post.id}`;
+    navigator.clipboard.writeText(url);
   }
 
   // Renderiza estado fechado
@@ -47,6 +56,11 @@ export function CardContent(props: Props) {
       </div>
       <div className="py-6">
         <p className="whitespace-pre-wrap leading-5">{props.post.content}</p>
+      </div>
+      <div className="mt-4">
+        <button onClick={onCopyLink} className="flex items-center border py-1 px-3 rounded text-sm gap-1 cursor-pointer hover:bg-emerald-600 hover:text-white">
+          <ClipboardDocumentIcon className="size-4" /> Copiar Link
+        </button>
       </div>
     </div>
   );

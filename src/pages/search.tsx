@@ -6,8 +6,24 @@ import { databaseContext } from "../context/database-context";
 export function SearchPage() {
   const useDatabase = useContext(databaseContext);
   const [searchParams] = useSearchParams();
-  const search = searchParams.get("search");
-  const posts = useDatabase.posts.filter((item) => item.title.includes(search!) || item.content.includes(search!));
+  const search = normalizeText(searchParams.get("search") ?? "");
+  const posts = useDatabase.posts.filter((item) => normalizeText(item.title).includes(search) || normalizeText(item.content).includes(search));
+
+  // Ajusta o texto para ignorar maiúscula, minúscula e acento
+  function normalizeText(text: string) {
+    return text
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+  }
+
+  if (search.length < 2) {
+    return (
+      <div className="flex flex-col p-8">
+        <p>Use a barra de pesuisa para buscar.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col p-8 overflow-y-auto">

@@ -23,6 +23,8 @@ export function Layout() {
         <p className="text-center mt-8 font-semibold text-xl">Central Net</p>
 
         <div className="flex flex-col mt-8">
+          <NavLink to="/admin">{({ isActive }) => (isActive ? <div className={`px-4 py-2 w-full bg-gray-100 text-emerald-600`}>Admin</div> : <></>)}</NavLink>
+          <NavLink to="/search">{({ isActive }) => (isActive ? <div className={`px-4 py-2 w-full bg-gray-100 text-emerald-600`}>Pesquisa</div> : <></>)}</NavLink>
           {useDatabase.categories.map((category) => {
             return (
               <NavLink key={category.id} to={`${category.slug}`}>
