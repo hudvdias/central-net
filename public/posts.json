@@ -21,18 +21,26 @@
     "categoryId": "2160c5c4-149b-4bbe-89ca-2ba8c24223ca"
   },
   {
+    "id": "1a40a715-1a98-49f8-a562-1a698a2b2d90",
+    "title": "Escala de lanches - 07/08",
+    "content": "Segue a escala de lanches a partir de 03/08.",
+    "date": "2026-08-03T00:00:00.000Z",
+    "categoryId": "6ffda750-ac0b-4a36-9561-b566c31aeb0c",
+    "documentLink": "/documents/1a40a715-1a98-49f8-a562-1a698a2b2d90"
+  },
+  {
+    "id": "cd1a22ec-1e02-4764-b8fb-11584b6d98d3",
+    "title": "Escala Sábado, 15/08",
+    "content": "Segue a escala para Sábado, 15/08.",
+    "date": "2026-08-03T00:00:00.000Z",
+    "categoryId": "6ffda750-ac0b-4a36-9561-b566c31aeb0c",
+    "documentLink": "/documents/cd1a22ec-1e02-4764-b8fb-11584b6d98d3"
+  },
+  {
     "id": "f3191c29-8c16-49c9-895f-54aaa6f778ad",
     "title": "Rotina Agendamento para Telemedicina (Conexa)",
     "content": "Equipe, \n\nSegue a rotina para agendamento de Teleconsulta.\n\nQuando o cliente não conseguir agendamento na rede para determinada especialidade, deverá ser realizado o direcionamento para a teleconsulta nas especialidades disponíveis na plataforma Conexa.\n\nAntes de realizar o encaminhamento, verificar:\n- Elegibilidade do cliente no sistema.\n- Os registros anteriores, se o cliente já realizou alguma consulta por telemedicina ou se já buscou atendimento na rede de prestadores para a especialidade solicitada.\n\nRotina – Terapias\n- Verificar a idade do cliente.\n- Confirmar se é primeiro atendimento.\n- Seguir a rotina de triagem para pacientes até 18 anos (encaminhamento ao CATEA).\n\nAbertura dos registros: O registro deverá ser aberto de acordo com a demanda solicitada e encaminhado para o Destino 245 – Agendamento Conexa.\n\nClassificação dos registros:\n89 – Consulta básica (Pediatria, Clínica Médica, Cirurgia Geral, Ginecologia e Obstetrícia)\n90 – Consulta nas demais especialidades\n91 – Consulta / sessão de Terapias (Fonoaudiologia, Psicologia, Terapia Ocupacional, \nPsicomotricidade, Psicopedagogia etc.)\n92 – Consulta / sessão com Nutricionista\n\nImportante:\nPara solicitações de terapias, solicitar ao cliente o envio do pedido médico, incluindo também encaminhamento para nutricionista, quando aplicável.\nO questionário anexo ao registro deverá ser preenchido corretamente.\n\nOrientações ao cliente:\nA consulta é realizada de forma on-line por meio da Plataforma Conexa, com profissionais de saúde qualificados (nome do aplicativo CONEXA SAÚDE).\n\nComo funciona:\n- A consulta é realizada por vídeo, utilizando celular, computador ou tablet com acesso à internet.\n- Após o agendamento, o cliente receberá um link de acesso à consulta.\n- No horário marcado, basta clicar no link e acessar a plataforma para iniciar o atendimento com o profissional.\n\nImportante:\n- Acesse o link alguns minutos antes do horário agendado.\n- Esteja em um local tranquilo e com boa conexão de internet.\n- Tenha em mãos documentos pessoais e exames, caso o profissional solicite durante a consulta.\n\nTerapias Oferecidas : Fonoaudiologia, psicologia, Nutrição. ",
     "date": "2026-08-01T00:00:00.000Z",
     "categoryId": "2160c5c4-149b-4bbe-89ca-2ba8c24223ca"
-  },
-  {
-    "id": "1a40a715-1a98-49f8-a562-1a698a2b2d90",
-    "title": "Escala de lanches - 03/08",
-    "content": "Segue a escala de lanches a partir de 03/08.",
-    "date": "2026-08-03T00:00:00.000Z",
-    "categoryId": "6ffda750-ac0b-4a36-9561-b566c31aeb0c",
-    "documentLink": "/documents/escala-de-lanches-0308"
   }
 ]

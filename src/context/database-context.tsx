@@ -3,6 +3,7 @@ import type { Category } from "../types/category";
 import type { Post } from "../types/post";
 
 export type CreatePostProps = { post: Post; file?: File };
+export type EditPostProps = { post: Post; file?: File };
 
 export type DatabaseContext = {
   directory: FileSystemDirectoryHandle | null;
@@ -16,7 +17,7 @@ export type DatabaseContext = {
   deleteCategory: (categoryId: string) => void;
 
   createPost: (props: CreatePostProps) => void;
-  editPost: (post: Post) => void;
+  editPost: (props: EditPostProps) => void;
   deletePost: (postId: string) => void;
 };
 

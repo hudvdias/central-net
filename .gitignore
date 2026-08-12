@@ -23,5 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 
-public/categories.json
-public/posts.json
+/public/categories.json
+/public/posts.json
+/public/documents/*
+/public/images/*

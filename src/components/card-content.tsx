@@ -54,10 +54,17 @@ export function CardContent(props: Props) {
           <MinusIcon className="size-5" />
         </button>
       </div>
-      <div className="py-6">
+      <div className="py-4 border-t border-emerald-600 mt-4">
         <p className="whitespace-pre-wrap leading-5">{props.post.content}</p>
       </div>
-      <div className="mt-4">
+      {props.post.documentLink && (
+        <div className="flex mb-4">
+          <a href={props.post.documentLink} target="__blank" className="px-4 py-2 rounded bg-emerald-600 text-white cursor-pointer hover:brightness-120">
+            Baixar documento
+          </a>
+        </div>
+      )}
+      <div className="pt-4 border-t border-emerald-600">
         <button onClick={onCopyLink} className="flex items-center border py-1 px-3 rounded text-sm gap-1 cursor-pointer hover:bg-emerald-600 hover:text-white">
           <ClipboardDocumentIcon className="size-4" /> Copiar Link
         </button>

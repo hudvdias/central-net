@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { databaseContext, type CreatePostProps } from "../context/database-context";
+import { databaseContext, type CreatePostProps, type EditPostProps } from "../context/database-context";
 import type { Category } from "../types/category";
 import type { Post } from "../types/post";
 import { createSlug } from "../utils/create-slug";
@@ -45,13 +45,17 @@ export function DatabaseContextProvider(props: Props) {
 
   // Salva documentos das publicações
   async function saveDocument(file: File, fileName: string) {
-    if (!directory) throw new Error("Diretório não selecionado.");
-    const documentsDirectory = await directory.getDirectoryHandle("documents", { create: true });
-    const fileHandle = await documentsDirectory.getFileHandle(fileName, { create: true });
-    const writable = await fileHandle.createWritable();
-    await writable.write(file);
-    await writable.close();
-    return `/documents/${fileName}`;
+    try {
+      if (!directory) throw new Error("Diretório não selecionado.");
+      const documentsDirectory = await directory.getDirectoryHandle("documents", { create: true });
+      const fileHandle = await documentsDirectory.getFileHandle(fileName, { create: true });
+      const writable = await fileHandle.createWritable();
+      await writable.write(file);
+      await writable.close();
+      return `/documents/${fileName}`;
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   // Cria uma nova categoria
@@ -65,10 +69,7 @@ export function DatabaseContextProvider(props: Props) {
   // Edita uma categoria
   async function editCategory(category: Category) {
     if (!categoriesHandle) return;
-    const newCategories = categories.map((item) => {
-      if (item.id === category.id) return category;
-      return item;
-    });
+    const newCategories = categories.map((item) => (item.id === category.id ? category : item));
     await writeJsonFile(categoriesHandle, newCategories);
     setCategories(newCategories);
   }
@@ -95,12 +96,16 @@ export function DatabaseContextProvider(props: Props) {
   }
 
   // Edita um post
-  async function editPost(post: Post) {
+  async function editPost(props: EditPostProps) {
     if (!postsHandle) return;
-    const newPosts = posts.map((item) => {
-      if (item.id === post.id) return post;
-      return item;
-    });
+    const newPost = props.post;
+    console.log({ newPost, file: props.file });
+    if (props.file) {
+      const documentLink = await saveDocument(props.file, newPost.id);
+      newPost.documentLink = documentLink;
+    }
+    console.log({ newPost });
+    const newPosts = posts.map((item) => (item.id === props.post.id ? newPost : item));
     await writeJsonFile(postsHandle, newPosts);
     setPosts(newPosts);
   }

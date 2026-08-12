@@ -10,10 +10,11 @@ export function EditPostPage() {
   const post = useDatabase.posts.find((item) => item.id === post_id);
   const category = useDatabase.categories.find((item) => item.id === post?.categoryId);
 
-  const [title, setTitle] = useState(post?.title || "");
+  const [title, setTitle] = useState(post?.title);
   const [date, setDate] = useState(post?.date.toISOString().split("T")[0] || new Date().toISOString().split("T")[0]);
-  const [content, setContent] = useState(post?.content || "");
-  const [categoryId, setCategoryId] = useState(post?.categoryId || "");
+  const [content, setContent] = useState(post?.content);
+  const [categoryId, setCategoryId] = useState(post?.categoryId);
+  const [file, setFile] = useState<File | undefined>(undefined);
 
   async function editPost(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -25,7 +26,7 @@ export function EditPostPage() {
       date: new Date(date),
       categoryId,
     };
-    useDatabase.editPost(newPost);
+    useDatabase.editPost({ post: newPost, file });
     setTitle("");
     alert("Publicação alterada com sucesso!");
     navigate(`/admin/${categoryId}`);
@@ -90,6 +91,27 @@ export function EditPostPage() {
           Conteúdo*
         </label>
         <textarea name="content" placeholder="Digite o conteúdo da publicação" required value={content} onChange={(event) => setContent(event.target.value)} className="h-96 p-4 leading-5 border rounded"></textarea>
+
+        <label htmlFor="file" className="mt-4">
+          Documento (opcional)
+        </label>
+        <div className="flex items-center">
+          {post.documentLink && (
+            <div className="flex items-center border px-4 py-2 rounded bg-emerald-600 text-white mr-4">
+              <p>Arquivo atual:</p>
+              <a href={post.documentLink} target="__blank" className="font-medium ml-1">
+                {post.documentLink}
+              </a>
+            </div>
+          )}
+
+          <div className="flex items-center gap-2">
+            <label htmlFor="file" className="cursor-pointer border rounded px-4 py-2 hover:text-emerald-600 hover:font-medium">
+              Substituir arquivo
+            </label>
+            <input id="file" className="file:hidden" name="file" type="file" onChange={(event) => setFile(event.target.files?.[0] || undefined)} />
+          </div>
+        </div>
 
         <button type="submit" className="px-4 py-2 rounded bg-emerald-600 text-white cursor-pointer mt-8 hover:brightness-120">
           Salvar alterações
