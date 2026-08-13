@@ -2,7 +2,18 @@
 
 Projeto para melhoria da Central Net utilizando React.
 
-**Central Net** é um diretório onde é reunida toda a informação de auxílio para a equipe de atendimento ao cliente da Unimed Leste Fluminense.
+**Central Net** é um diretório onde é reunida toda a informação de auxílio para a equipe de atendimento ao cliente de plano de saúde.
+
+## Objetivo
+
+O objetivo do projeto era melhorar o site atual, onde os administradores tinham que editar o código fonte diretamente para criar um novo informativo.
+Além disso, não habia nenhum campo de pesquisa ou roteamento, e os atendentes tinham que "decorar" o caminho das informações, o que muita das vezes não acontecia e atrasava o atendimento.
+
+## Desafio
+
+O desafio era criar uma aplicação que seria hospedada em ums ervidor ISS através de uma pasta compartilhada na intranet.
+Como não tinha acesso ao ISS Manager, muito menos a um banco de dados, optei por utilizar arquivos JSON como mantenedor desses dados.
+Por fim, a limitação de recursos e acesso não garantiu que o projeto fosse para frente.
 
 ## Como rodar o projeto
 

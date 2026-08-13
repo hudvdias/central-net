@@ -142,10 +142,10 @@ export function DatabaseContextProvider(props: Props) {
   // Carrega os posts e categorias da página Public ao abrir a página
   useEffect(() => {
     async function loadData() {
-      const categoriesResponse = await fetch("/categories.json");
+      const categoriesResponse = await fetch("/centralnet/v2-beta/categories.json");
       const categoriesData: Category[] = await categoriesResponse.json();
       setCategories(categoriesData);
-      const postsResponse = await fetch("/posts.json");
+      const postsResponse = await fetch("/centralnet/v2-beta/posts.json");
       const postsData: Post[] = await postsResponse.json();
       const formattedData: Post[] = postsData.map((post: Post) => ({ ...post, date: new Date(post.date) })); // Formata a data para o tipo Date
       const orderedData = formattedData.sort((a, b) => b.date.getTime() - a.date.getTime()); // Ordena para mostrar os últimos primeiro
